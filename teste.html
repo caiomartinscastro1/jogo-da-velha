@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da velha</title>
+    <style>
+
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            font-size: 60px;
+        }
+
+        table {
+            margin: 200px auto;
+        }
+
+        .button:hover {
+            background-image: url(https://imagensemoldes.com.br/wp-content/uploads/2020/07/Interroga%C3%A7%C3%A3o-Amarela-PNG-1280x720.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><button class="button" onclick="jogar(0)"></button></td>
+            <td><button class="button" onclick="jogar(1)"></button></td>
+            <td><button class="button" onclick="jogar(2)"></button></td>
+        </tr>
+
+        <tr>
+            <td><button class="button" onclick="jogar(3)"></button></td>
+            <td><button class="button" onclick="jogar(4)"></button></td>
+            <td><button class="button" onclick="jogar(5)"></button></td>
+        </tr>
+
+        <tr>
+            <td><button class="button" onclick="jogar(6)"></button></td>
+            <td><button class="button" onclick="jogar(7)"></button></td>
+            <td><button class="button" onclick="jogar(8)"></button></td>
+        </tr>
+    </table>
+
+    <script>
+
+        let mudanca = 1;
+
+        let padroes = [];
+
+        padroes.push(document.querySelectorAll('button')[0]);
+        padroes.push(document.querySelectorAll('button')[1]);
+        padroes.push(document.querySelectorAll('button')[2]);
+        padroes.push(document.querySelectorAll('button')[3]);
+        padroes.push(document.querySelectorAll('button')[4]);
+        padroes.push(document.querySelectorAll('button')[5]);
+        padroes.push(document.querySelectorAll('button')[6]);
+        padroes.push(document.querySelectorAll('button')[7]);
+        padroes.push(document.querySelectorAll('button')[8]);
+
+        function jogar(botao , padrao){
+            let jogada;
+            if(mudanca % 2 == 0){
+                jogada = "X";
+            } else {
+                jogada = "O";
+            }
+
+            let button = document.querySelectorAll('button')[botao];
+            
+            if(button.textContent == "X" || button.textContent == "O"){
+                alert("JÁ FOI JOGADO NESSE LOCAL!!!");
+                mudanca = mudanca - 1;
+            } else {
+                button.textContent = jogada;
+                button.removeAttribute('class');
+            }
+
+            if(padroes[0].textContent == "X" && padroes[1].textContent == "X" && padroes[2].textContent == "X" || padroes[3].textContent == "X" && padroes[4].textContent == "X" && padroes[5].textContent == "X" || padroes[6].textContent == "X" && padroes[7].textContent == "X" && padroes[8].textContent == "X" || padroes[0].textContent == "X" && padroes[3].textContent == "X" && padroes[6].textContent == "X" || padroes[1].textContent == "X" && padroes[4].textContent == "X" && padroes[7].textContent == "X" || padroes[2].textContent == "X" && padroes[5].textContent == "X" && padroes[8].textContent == "X" || padroes[0].textContent == "X" && padroes[4].textContent == "X" && padroes[8].textContent == "X" || padroes[2].textContent == "X" && padroes[4].textContent == "X" && padroes[6].textContent == "X"){
+                var acabou = confirm("X GANHOU");
+            } else if(padroes[0].textContent == "O" && padroes[1].textContent == "O" && padroes[2].textContent == "O" || padroes[3].textContent == "O" && padroes[4].textContent == "O" && padroes[5].textContent == "O" || padroes[6].textContent == "O" && padroes[7].textContent == "O" && padroes[8].textContent == "O" || padroes[0].textContent == "O" && padroes[3].textContent == "O" && padroes[6].textContent == "O" || padroes[1].textContent == "O" && padroes[4].textContent == "O" && padroes[7].textContent == "O" || padroes[2].textContent == "O" && padroes[5].textContent == "O" && padroes[8].textContent == "O" || padroes[0].textContent == "O" && padroes[4].textContent == "O" && padroes[8].textContent == "O" || padroes[2].textContent == "O" && padroes[4].textContent == "O" && padroes[6].textContent == "O"){
+                var acabou = confirm("O GANHOU");
+            }         
+            
+            if(acabou){
+                window.open('http://127.0.0.1:5500/teste.html');
+            }
+
+            mudanca = mudanca + 1;
+
+            
+        }
+
+    </script>
+
+</body>
+</html>
